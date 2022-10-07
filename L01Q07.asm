@@ -25,19 +25,31 @@ alocando:
 	mfhi $t4 #realocando ultimo algarismo do numero de novo numero (resto - primeiro) 	
 	mflo $t1 #realocando resultado inteiro da divisao	
 out:	
-	add $a0, $zero, $t4 #imprimindo	
+	add $a0, $zero, $t7 #imprimindo	
 	addi $v0, $zero, 1 #ordem de serviço
 	syscall
 	
-	add $a0, $zero, $t5 #imprimindo	
-	addi $v0, $zero, 1 #ordem de serviço
-	syscall
+	add $4, $zero, '\n' #Adicionar '/n' no registrador de saida
+	addi $2, $zero, 11 #Ordem de serviço; imprimir caracter
+	syscall		
 	
 	add $a0, $zero, $t6 #imprimindo	
 	addi $v0, $zero, 1 #ordem de serviço
 	syscall
 	
-	add $a0, $zero, $t7 #imprimindo	
+	add $4, $zero, '\n' #Adicionar '/n' no registrador de saida
+	addi $2, $zero, 11 #Ordem de serviço; imprimir caracter
+	syscall	
+	
+	add $a0, $zero, $t5 #imprimindo	
+	addi $v0, $zero, 1 #ordem de serviço
+	syscall
+	
+	add $4, $zero, '\n' #Adicionar '/n' no registrador de saida
+	addi $2, $zero, 11 #Ordem de serviço; imprimir caracter
+	syscall	
+	
+	add $a0, $zero, $t4 #imprimindo	
 	addi $v0, $zero, 1 #ordem de serviço
 	syscall
 	
