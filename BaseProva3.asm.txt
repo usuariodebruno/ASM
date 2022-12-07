@@ -1,3 +1,87 @@
+faça um programa e receba um vetor de 10 elementos. Retire desse vetor, o maior e o menor index e imprima o vetor resultante em ordem inversa
+
+*se o vetor tiver o index maior e menor tiver repetido. 
+* eliminar todos os repetidos 
+* índice de controle para realocar no vetor
+
+
+text
+main:  addi $8, $0, 0
+       addi $9, $0, 9
+       lui $24, 0x1001
+       addi $2, $0, 5
+       syscall
+       sw $2, 0($24)
+       addi $24, $24, 4
+       addi $10, $2, 0 #menor
+       addi $11, $2, 0 #maior
+       addi $12, $2, 0 #soma
+for:   beq $8, $9, fim
+       addi $2, $0, 5
+       syscall
+       sw $2, 0($24)
+       addi $24, $24, 4
+       add $12, $12, $2 #soma = soma + $2
+       
+       slt $13, $2, $10 #se $2<menor então $13<=1
+       bne $13, $0, trocamenor
+       j testamaior
+trocamenor:
+       add $10, $0, $2        
+       
+       
+testamaior:      
+       slt $13, $2, $11 #se $2<maior então $13<=1
+       beq $13, $0, trocamaior
+       j inc
+trocamaior:
+       add $11, $2, $0          
+inc:
+       addi $8, $8, 1
+       j for          
+fim:   sub $12, $12, $10
+       sub $12, $12, $11
+       addi $13, $0, 8
+       div $12, $13
+       mflo $4
+       addi $2, $0, 1
+       syscall
+       
+       addi $2, $0, 10
+       syscall
+
+
+
+#Ordenacao de vetor
+.data
+.word 1, 3, -3, 5, -55 -999
+
+.text
+main: addi $8, $0, 0 #i = 0
+
+      addi $10, $0, 5
+      lui $20, 0x1001
+fore: beq $8, $10, fimfe      
+      lw $13, 0($20)
+      addi $20, $20, 4
+      add $21, $20, $0
+      addi $9, $8, 1 #j = i+1
+      addi $11, $0, 6
+fori: beq $9, $11, fimfi
+      lw $14, 0($21)
+      addi $21, $21, 4
+      slt $15, $14, $13 #$14<$13; $15<=1; $15<=0
+      beq $15, $0, segue
+      sw $14, -4($20)
+      sw $13, -4($21)
+      add $13, $14, $0
+segue:addi $9, $9, 1
+      j fori
+fimfi:addi $8, $8, 1
+      j fore
+fimfe: addi $2, $0, 10
+      syscall
+
 # lista 05 questão 02: Crie um programa que lê 6 valores inteiros
 # e, em seguida, mostre na tela os valores lidos.
 .text
@@ -147,3 +231,15 @@ for3:    beq $t1 $t2 end
     
 end:    addi $v0 $0 10
     syscall
+
+
+
+
+
+Ordem serviço0
+
+1 imprime inteiro $4
+5 ler int - $2 recebe
+10 end
+11 imprime char
+12 ler char - $2 recebe
